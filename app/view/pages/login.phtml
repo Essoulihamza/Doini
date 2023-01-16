@@ -1,0 +1,20 @@
+<form action="http://doini.com/page/login" method="post" id="login-form"
+class="absolute  top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%] 
+       hidden flex-col items-center justify-center bg-white z-50 rounded-md drop-shadow-2xl
+       space-y-8 w-[300px] py-12 md:w-[400px]" >
+            <svg class="close-form absolute top-0 right-1 cursor-pointer" width="36" height="36" fill="#818cf8" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="m12 10.583 4.95-4.95 1.414 1.414-4.95 4.95 4.95 4.95-1.414 1.414L12 13.41l-4.95 4.95-1.414-1.414 4.95-4.95-4.95-4.95L7.05 5.633l4.95 4.95Z"></path>
+            </svg>
+       <h2 class="text-xl font-semibold text-dark">Welcome back</h2>
+    <div class="flex flex-col space-y-6">
+        <input type="text" id="user-name" name="user-name" placeholder="Enter your user name"
+       class="w-56  h-14 bg-indigo-50 rounded-full border border-primary focus:outline-none
+              px-4 focus:border-2 text-dark ">
+       <input type="password" id="password" name="password" placeholder="Enter your password"
+       class="w-56  h-14 bg-indigo-50 rounded-full border border-primary focus:outline-none
+              px-4 focus:border-2 text-dark">
+    </div>
+    <input type="submit"  name="login" value="Login"
+       class="w-64  h-14 bg-dark rounded-full border border-primary focus:outline-none
+              px-4 focus:border-2 text-indigo-50 font-bold md:w-72 cursor-pointer">
+</form>

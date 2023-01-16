@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- meta configrations -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- font family links -->
+    <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet'>
+    <!-- page title -->
+    <title><?php echo $this->viewTitle; ?></title>
+    <!-- tailwind CDN  & config -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+    tailwind.config = {
+      theme: {
+        fontFamily: {
+            'main': ['Raleway', 'sans-serif'], 
+            'task': ['Lobster Two'],
+        },
+        extend: {
+          colors: {
+            dark: 'rgb(49 46 129)',
+            primary: '#818cf8',
+            text: ''
+          }
+        }
+      }
+    }
+  </script>
+
+</head>
+<body class="bg-indigo-50 font-main">
+    <div class="absolute  top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%] flex flex-col justify-center items-center space-y-4 z-50">
+        <h1 class="text-center text-indigo-500 text-5xl font-semibold">welcome to <span class="block font-bold text-dark"> doini</span></h1>
+        <div>
+            <button id="login-button" class="w-24 rounded-full px-4 py-2 text-indigo-50 bg-primary drop-shadow-2xl  font-bold ">Login</button>
+            <button id="signup-button" class="w-24 rounded-full px-4 py-2 text-indigo-50 bg-dark drop-shadow-2xl  font-bold ">Sign up</button>
+        </div>
+        <p class="text-center  text-primary w-52">login to start use our website as your task board</p>
+    </div>
+    <div class="absolute bottom-0 left-0 z-30">
+        <img src="/assets/images/il_3.svg" alt="">
+    </div>
+    <div class="absolute bottom-0 right-0 hidden lg:block z-20">
+        <img src="/assets/images/il_5.svg" alt="">
+    </div>
+    <div class="absolute top-0 left-1/2 translate-x-[-50%] translate-y-[-30%]  lg:translate-y-[-45%] z-10">
+        <img src="/assets/images/il_6.svg" alt="">
+    </div>
+<?php include VIEW . 'pages/login.phtml';
+include VIEW . 'pages/signup.phtml'; ?>
