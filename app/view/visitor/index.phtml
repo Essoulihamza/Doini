@@ -7,6 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- font family links -->
     <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet'>
+    <!-- jQuery CDN -->
+    <script src="https://code.jquery.com/jquery-3.6.3.slim.min.js" integrity="sha256-ZwqZIVdD3iXNyGHbSYdsmWP//UBokj2FHAxKuSBKDSo=" crossorigin="anonymous"></script>
     <!-- page title -->
     <title><?php echo $this->viewTitle; ?></title>
     <!-- tailwind CDN  & config -->
@@ -48,5 +50,8 @@
     <div class="absolute top-0 left-1/2 translate-x-[-50%] translate-y-[-30%]  lg:translate-y-[-45%] z-10">
         <img src="/assets/images/il_6.svg" alt="">
     </div>
-<?php include VIEW . 'pages/login.phtml';
-include VIEW . 'pages/signup.phtml'; ?>
+<?php include VIEW . 'visitor/components/login.phtml';
+include VIEW . 'visitor/components/signup.phtml'; ?>
+<script src="/assets/script/app.js"></script>
+</body>
+</html>

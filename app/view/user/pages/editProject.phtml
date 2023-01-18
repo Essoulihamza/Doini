@@ -1,0 +1,17 @@
+<?php include VIEW . 'user/components/header.phtml'; ?>
+<form action="http://doini.com/project/edit/<?php echo $this->viewData['project-info']['ID'];?>/" method="post" id="edit-project-form"
+class="absolute top-1/2 left-1/2 translate-y-[-50%] translate-x-[-50%] w-1/3 h-44 bg-primary rounded-md drop-shadow-2xl flex flex-col space-y-8 items-center">
+           <a href="http://doini.com/page/dashboard"><i class="uil uil-arrow-left close-form absolute top-0 right-1 cursor-pointer text-3xl text-light"></i></a>
+            <h2 class="text-xl font-semibold text-dark text-center mt-2">Edit project</h2>
+            <div class="flex justify-center items-center justify-evenly space-x-2">
+                <input type="text"  name="name" placeholder="Enter new project name"
+                class="w-56  h-14 bg-indigo-50 rounded-full border border-primary focus:outline-none
+                px-4 focus:border-2 text-dark" value="<?php echo $this->viewData['project-info']['name']; ?>">
+                <input type="submit"  name="edit" value="edit"
+                class="w-20  h-14 bg-dark rounded-full  focus:outline-none
+                px-4 focus:border-2 text-indigo-50 font-bold md:w-18 cursor-pointer"> 
+            </div>
+            <a href="http://doini.com/project/delete/<?php echo $this->viewData['project-info']['ID'];?>"><button type="button" class="w-56 h-14 bg-dark rounded-full  focus:outline-none
+                px-4 focus:border-2 text-indigo-50 font-bold md:w-18 cursor-pointer">Delete Project</button></a>
+</form>
+<?php include VIEW . 'user/components/footer.phtml'; ?>

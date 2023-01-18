@@ -1,0 +1,61 @@
+<?php include VIEW . 'user/components/header.phtml'; ?>
+<section class="p-6 w-full">
+    <h1 class="text-3xl text-dark font-bold text-center  bg-indigo-100">Name</h1>
+    <div class="grid grid-cols-1 grid-rows-3 lg:grid-rows-1 lg:grid-cols-3  gap-x-5 gap-y-5  justify-center  items-start bg-indigo-100 w-full h-[75vh] rounded p-6">
+        <!-- To do -->
+        <div class="w-full max-h-full min-h-fit bg-light rounded-md drop-shadow-lg h-full bg-primary overflow-hidden">
+            <div class="bg-indigo-300 w-full h-14 border-l-8 border-dark w-full flex  space-x-2 items-center rounded" >
+                <p class="text-2xl font-bold text-center text-dark ml-6">To do</p>
+                <div class="w-9 h-9 bg-primary rounded flex justify-center items-center border-2 border-indigo-200">
+                    <p class="text-light text-center font-bold text-xl ">12</p>
+                </div>
+            </div>
+            <!-- Tasks -->
+            <div  class="task w-full h-fit max-h-full flex flex-col px-3 py-2 gap-3 overflow-auto pb-16">
+                <div class="w-full h-fit  bg-light rounded p-1">
+                    <div class="flex justify-between">
+                        <div class="flex items-center space-x-2">
+                            <p class="text-xl ml-2 border-b border-primary">Task Title 1</p>
+                            <div class="flex justify-center items-center w-20 bg-indigo-100 rounded-lg h-6" >
+                                <p class="text-sm text-dark">02-02-2023</p>
+                            </div>
+                        </div>
+                        <div class="space-x-1">
+                            <a href=""><i class="uil uil-trash-alt text-indigo-300 text-lg"></i></a>
+                            <a href=""><i class="uil uil-edit text-indigo-300 text-lg"></i></a> 
+                        </div>
+                    </div>
+                    <p class="text-sm ml-4 mt-2">task description is Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quia possimus porro et unde optio quos esse quisquam debitis illum blanditiis. Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas blanditiis molestiae, praesentium labore quia saepe? Nam quasi quod illum quos.</p>
+                </div>
+            </div>
+        </div>
+        <!-- Doing -->
+        <div class="w-full max-h-full min-h-fit bg-light rounded-md drop-shadow-lg h-full bg-primary overflow-hidden">
+            <div class="bg-indigo-300 h-14 border-l-8 border-dark w-full flex  space-x-2 items-center rounded" >
+                <p class="text-2xl font-bold text-center text-dark ml-6">Doing</p>
+                <div class="w-9 h-9 bg-primary rounded flex justify-center items-center border-2 border-indigo-200">
+                    <p class="text-light text-center font-bold text-xl">12</p>
+                </div>
+            </div>
+            <!-- Tasks -->
+            <div  class="task w-full h-fit max-h-full flex flex-col px-3 py-2 gap-3 overflow-auto pb-16">
+                
+            </div>
+        </div>
+        <!-- Done -->
+        <div class="w-full max-h-full min-h-fit bg-light rounded-md drop-shadow-lg h-full bg-primary">
+            <div class="bg-indigo-300 h-14 border-l-8 border-dark w-full flex space-x-2 items-center rounded" >
+                <p class="text-2xl font-bold text-center text-dark ml-6">Done</p>
+                <div class="w-9 h-9 bg-primary rounded flex justify-center items-center border-2 border-indigo-200">
+                    <p class="text-light text-center font-bold text-xl">12</p>
+                </div>
+            </div>
+            <!-- Tasks -->
+            <div  class="task w-full h-fit max-h-full flex flex-col px-3 py-2 gap-3 overflow-auto pb-16">
+                
+            </div>
+        </div>
+    </div>
+</section>
+
+<?php include VIEW . 'user/components/footer.phtml'; ?>

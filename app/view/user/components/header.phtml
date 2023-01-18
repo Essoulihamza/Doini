@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- meta configrations -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- font family links -->
+    <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet'>
+    <!-- icons link  -->
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+    <!-- css link -->
+    <link rel="stylesheet" href="/assets/style/style.css">
+    <!-- jQuery CDN -->
+    <script src="https://code.jquery.com/jquery-3.6.3.slim.min.js" integrity="sha256-ZwqZIVdD3iXNyGHbSYdsmWP//UBokj2FHAxKuSBKDSo=" crossorigin="anonymous"></script>
+    <!-- page title -->
+    <title><?php echo $this->viewTitle; ?></title>
+    <!-- tailwind CDN  & config -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+    tailwind.config = {
+      theme: {
+        fontFamily: {
+            'main': ['Raleway', 'sans-serif'], 
+            'task': ['Lobster Two'],
+        },
+        extend: {
+          colors: {
+            dark: 'rgb(49 46 129)',
+            primary: '#818cf8',
+            light: '#eef2ff',
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="font-main bg-light overflow-y-hidden max-w-screen-2xl mx-auto ">
+    <header class="flex justify-center items-center w-full bg-indigo-300 h-16">
+        <a href="http://doini.com/page/logout" title="Logout">
+            <div class="flex w-72 h-14 bg-primary  items-center justify-between rounded">
+                <div class="h-14 w-14 rounded-r-full rounded-l bg-indigo500 flex justify-center items-center">
+                    <i class="uil uil-user text-2xl text-light"></i>
+                </div>
+                <p class="text-light font-semibold"><?php echo $_SESSION['user-name']; ?></p>
+                <i class="uil uil-signout text-light pr-3 text-xl"></i>
+            </div>
+        </a>
+    </header>

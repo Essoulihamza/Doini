@@ -1,0 +1,3 @@
+.task::-webkit-scrollbar {
+    display: none;
+}

@@ -1,0 +1,60 @@
+<?php include VIEW . 'user/components/header.phtml'; ?>
+<section class="px-6 w-full">
+    <div class="mt-12 w-full flex space-y-2 flex-col md:flex-row md:justify-between  items-center md:items-start">
+        <div class="w-full sm:w-64 min-w-[300px] h-12 bg-dark  px-3 py-1 flex justify-between items-center rounded">
+            <h1 class="font-bold text-4xl text-light">My Project</h1>
+            <div class="w-9 h-9 bg-primary rounded flex justify-center items-center">
+                <p class="text-light text-center font-bold text-xl">
+                    <?php if (array_key_exists('projects', $this->viewData))
+                        echo count($this->viewData['projects']); 
+                    ?>
+                </p>
+            </div>
+        </div>
+        <button id="add-project-button" class="w-48 h-12 bg-primary text-light text-2xl rounded">New project</button>
+    </div>
+    <div class="container h-fit h-[60vh] flex flex-row  flex-wrap content-start justify-center  md:justify-start mt-9 gap-x-8 gap-y-4  overflow-y-scroll scroll-smooth snap-y  p-2">
+        <?php if (array_key_exists('projects', $this->viewData) && $this->viewData['projects'] != null) {
+            foreach ($this->viewData['projects'] as $project) {
+                ?>
+        <!-- project start -->
+        <div class="w-72 h-28 bg-primary rounded px-2 py-2">
+            <div class="flex justify-between">
+                <p class="text-light text-xl font-semibold cursor-default"><?php echo $project['name']; ?></p>
+                <div class="space-x-2">
+                    <a href="http://doini.com/page/editProject/<?php echo $project['ID']; ?>"><i class="uil uil-setting text-2xl text-light"></i></a>
+                    <a href=""><i class="uil uil-arrow-circle-right text-dark text-2xl"></i></a>
+                </div>
+
+            </div>
+            <div class="flex justify-around cursor-default">
+            <div>
+                <p>Todo</p>
+                <div class="w-9 h-9 bg-light rounded flex justify-center items-center">
+                    <p class="text-dark text-center font-bold text-xl ">00</p>
+                </div>
+            </div>
+            <div>
+                <p>doing</p>
+                <div class="w-9 h-9 bg-light rounded flex justify-center items-center">
+                    <p class="text-dark text-center font-bold text-xl">00</p>
+                </div>
+            </div>
+            <div>
+                <p>Done</p>
+                <div class="w-9 h-9 bg-light rounded flex justify-center items-center">
+                    <p class="text-dark text-center font-bold text-xl">00</p>
+                </div>
+            </div>
+            </div>
+        </div>
+        <!-- project end -->
+        <?php }
+        } ?>
+    </div>
+</section>
+
+<?php
+include VIEW . 'user/components/addproject.phtml';
+include VIEW . 'user/components/footer.phtml'; 
+?>

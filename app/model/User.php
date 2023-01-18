@@ -16,5 +16,5 @@ class User extends DataBase
         $result->bindParam(1, $userName);
         $result->bindParam(2, $password);
         $result->execute();
-    }
+    } 
 }
