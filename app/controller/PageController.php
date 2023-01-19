@@ -87,9 +87,9 @@ class PageController extends controller
             $this->view('user/pages/dashboard', 'dashboard', ['projects' => $this->model('project')->getProjects($_SESSION['user-id'])])->render();
         }else  header('location: http://doini.com/page/index');
     }
-    public function taskBoard() {
+    public function taskBoard($projectId) {
         if(isset($_SESSION['user-id'])) {
-            $this->view('user/pages/taskBoard', 'TaskBoard')->render();
+            $this->view('user/pages/taskBoard', 'TaskBoard', ['project-id' => $projectId])->render();
         }else  header('location: http://doini.com/page/index');
 
     }

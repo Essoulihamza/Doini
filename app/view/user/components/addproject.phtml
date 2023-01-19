@@ -13,14 +13,3 @@ class="absolute top-1/2 left-1/2 translate-y-[-50%] translate-x-[-50%] w-1/3 h-4
                 px-4 focus:border-2 text-indigo-50 font-bold md:w-18 cursor-pointer"> 
             </div>
 </form>
-<script>
-    let formButton = document.getElementById('add-project-button');
-    let form = document.getElementById('add-project-form');
-    let formCloser = form.querySelector('.close-form');
-    formButton.addEventListener('click', ()=> {
-        form.classList.replace('hidden', 'flex');
-    });
-    formCloser.addEventListener('click', ()=> {
-        form.classList.replace('flex', 'hidden');
-    });
-</script>
