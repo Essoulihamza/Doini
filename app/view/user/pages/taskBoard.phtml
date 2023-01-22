@@ -1,89 +1,73 @@
 <?php include VIEW . 'user/components/header.phtml'; ?>
 <section class="p-6 w-full">
-    <h1  id="<?php echo $this->viewData['project-id']; ?>" class="text-3xl text-dark font-bold text-center  bg-indigo-100">Name</h1>
-    <div class="grid grid-cols-1 grid-rows-3 lg:grid-rows-1 lg:grid-cols-3  gap-x-5 gap-y-5  justify-center  items-start bg-indigo-100 w-full h-[75vh] rounded p-6">
+<a  href="http://doini.com/page/dashboard" class="text-xl text-dark font-bold text-center  bg-indigo-100 pb-2"><i class="uil uil-arrow-left"></i>  return to the dashoard</a>
+    <h1  id="<?php echo $this->viewData['project']['ID']; ?>" class="text-3xl text-dark font-bold text-center  bg-indigo-100 pb-2"><?php echo $this->viewData['project']['name']; ?></h1>
+    <div class="flex justify-center bg-indigo-100">
+        <input class="w-56  placeholder:italic placeholder:text-slate-400 block bg-white w-full border border-slate-300 rounded-md py-2 pl-9 pr-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm" placeholder="Search for tasks..." type="text" name="search" id="search"/>
+    </div>
+    
+    <div class="grid grid-cols-1 grid-rows-3 lg:grid-rows-1 lg:grid-cols-3  gap-x-5 gap-y-5  justify-center  items-start bg-indigo-100 w-full h-[70vh] rounded p-6">
         <!-- To do -->
-        <div class="w-full max-h-full min-h-fit bg-light rounded-md drop-shadow-lg h-full bg-primary overflow-hidden">
-            <div class="bg-indigo-300 w-full h-14 border-l-8 border-dark w-full flex  space-x-2 items-center rounded" >
-                <p class="text-2xl font-bold text-center text-dark ml-6">To do</p>
-                <div class="w-9 h-9 bg-primary rounded flex justify-center items-center border-2 border-indigo-200">
-                    <p class="text-light text-center font-bold text-xl ">12</p>
+        <div  class="w-full h-full  bg-light rounded-md drop-shadow-lg h-full bg-primary overflow-hidden">
+            <div class="bg-indigo-300 w-full h-14 border-l-8 border-dark w-full flex  justify-between items-center rounded" >
+                <div class="flex  space-x-2 items-center rounded">
+                    <p class="text-2xl font-bold text-center text-dark ml-6">To do</p>
+                    <div class="w-9 h-9 bg-primary rounded flex justify-center items-center border-2 border-indigo-200">
+                        <p id="todo-count" class="text-light text-center font-bold text-xl ">0</p>
+                    </div> 
                 </div>
+                <div class="pr-3 space-x-2">
+                    <i id="add-task-button" class="uil uil-plus-circle text-2xl text-dark cursor-pointer px-1"></i>
+                    <i id="add-multi-task-button" class="uil uil-book-medical text-2xl text-dark cursor-pointer px-1"></i>     
+                </div>
+                
+                
             </div>
             <!-- Tasks -->
-            <div id="todo-tasks"  class="task-container w-full h-fit max-h-full flex flex-col px-3 py-2 gap-3 overflow-auto pb-16">
-                <div class="task w-full h-fit  bg-light rounded p-1 cursor-move" draggable="true">
-                    <div class="flex justify-between">
-                        <div class="flex items-center space-x-2">
-                            <p class="text-xl ml-2 border-b border-primary">Task Title 1</p>
-                            <div class="flex justify-center items-center w-20 bg-indigo-100 rounded-lg h-6" >
-                                <p class="text-sm text-dark">02-02-2023</p>
-                            </div>
-                        </div>
-                        <div class="space-x-1">
-                            <a href=""><i class="uil uil-trash-alt text-indigo-300 text-lg"></i></a>
-                            <a href=""><i class="uil uil-edit text-indigo-300 text-lg"></i></a> 
-                        </div>
-                    </div>
-                    <p class="text-sm ml-4 mt-2">task description is Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quia possimus porro et unde optio quos esse quisquam debitis illum blanditiis. Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas blanditiis molestiae, praesentium labore quia saepe? Nam quasi quod illum quos.</p>
-                </div>
+            <div id="todo-tasks" ondrop="dropTask(event)" ondragover="dragOver(event)"  class="task-container w-full  h-full  flex flex-col px-3 py-2 gap-3 overflow-auto pb-16 bg-indigo-100">
+                
             </div>
         </div>
         <!-- Doing -->
-        <div class="w-full max-h-full min-h-fit bg-light rounded-md drop-shadow-lg h-full bg-primary overflow-hidden">
+        <div class="w-full h-full min-h-fit bg-light rounded-md drop-shadow-lg h-full bg-primary overflow-hidden">
             <div class="bg-indigo-300 h-14 border-l-8 border-dark w-full flex  space-x-2 items-center rounded" >
                 <p class="text-2xl font-bold text-center text-dark ml-6">Doing</p>
                 <div class="w-9 h-9 bg-primary rounded flex justify-center items-center border-2 border-indigo-200">
-                    <p class="text-light text-center font-bold text-xl">12</p>
+                    <p id="doing-count" class="text-light text-center font-bold text-xl">0</p>
                 </div>
             </div>
             <!-- Tasks -->
-            <div id="doing-tasks"  class="task-container w-full h-fit max-h-full flex flex-col px-3 py-2 gap-3 overflow-auto pb-16">
-                <div class="task w-full h-fit  bg-light rounded p-1 cursor-move" draggable="true">
-                    <div class="flex justify-between">
-                        <div class="flex items-center space-x-2">
-                            <p class="text-xl ml-2 border-b border-primary">Task Title 1</p>
-                            <div class="flex justify-center items-center w-20 bg-indigo-100 rounded-lg h-6" >
-                                <p class="text-sm text-dark">02-02-2023</p>
-                            </div>
-                        </div>
-                        <div class="space-x-1">
-                            <a href=""><i class="uil uil-trash-alt text-indigo-300 text-lg"></i></a>
-                            <a href=""><i class="uil uil-edit text-indigo-300 text-lg"></i></a> 
-                        </div>
-                    </div>
-                    <p class="text-sm ml-4 mt-2">task description is Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quia possimus porro et unde optio quos esse quisquam debitis illum blanditiis. Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas blanditiis molestiae, praesentium labore quia saepe? Nam quasi quod illum quos.</p>
-                </div>
+            <div id="doing-tasks" ondrop="dropTask(event)" ondragover="dragOver(event)" class="task-container w-full  h-full flex flex-col px-3 py-2 gap-3 overflow-auto pb-16 bg-indigo-100">
             </div>
         </div>
         <!-- Done -->
-        <div class="w-full max-h-full min-h-fit bg-light rounded-md drop-shadow-lg h-full bg-primary">
+        <div class="w-full h-full min-h-fit bg-light rounded-md drop-shadow-lg h-full bg-primary overflow-hidden">
             <div class="bg-indigo-300 h-14 border-l-8 border-dark w-full flex space-x-2 items-center rounded" >
                 <p class="text-2xl font-bold text-center text-dark ml-6">Done</p>
                 <div class="w-9 h-9 bg-primary rounded flex justify-center items-center border-2 border-indigo-200">
-                    <p class="text-light text-center font-bold text-xl">12</p>
+                    <p id="done-count" class="text-light text-center font-bold text-xl">0</p>
                 </div>
             </div>
             <!-- Tasks -->
-            <div id="done-tasks"  class="task-container w-full h-fit max-h-full flex flex-col px-3 py-2 gap-3 overflow-auto pb-16">
-                <div class="task w-full h-fit  bg-light rounded p-1 cursor-move" draggable="true">
-                    <div class="flex justify-between">
-                        <div class="flex items-center space-x-2">
-                            <p class="text-xl ml-2 border-b border-primary">Task Title 1</p>
-                            <div class="flex justify-center items-center w-20 bg-indigo-100 rounded-lg h-6" >
-                                <p class="text-sm text-dark">02-02-2023</p>
-                            </div>
-                        </div>
-                        <div class="space-x-1">
-                            <a href=""><i class="uil uil-trash-alt text-indigo-300 text-lg"></i></a>
-                            <a href=""><i class="uil uil-edit text-indigo-300 text-lg"></i></a> 
-                        </div>
-                    </div>
-                    <p class="text-sm ml-4 mt-2">task description is Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quia possimus porro et unde optio quos esse quisquam debitis illum blanditiis. Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas blanditiis molestiae, praesentium labore quia saepe? Nam quasi quod illum quos.</p>
-                </div>
-            </div>
+            <div id="done-tasks" ondrop="dropTask(event)" ondragover="dragOver(event)"  class="task-container w-full  h-full flex flex-col px-3 py-2 gap-3 overflow-auto pb-16 bg-indigo-100"></div>
         </div>
     </div>
 </section>
+<?php include VIEW . 'user/components/addtask.phtml'; 
+      include VIEW . 'user/components/addMultipelTasks.phtml'; 
+?>
 <script src="/assets/script/taskfetch.js"></script>
 <?php include VIEW . 'user/components/footer.phtml'; ?>
+<div>
+                <div class="flex flex-col justify-center items-center justify-evenly">
+                    <input type="text"  name="task-name" placeholder="Enter task title"
+                    class="w-56  h-12 bg-indigo-50 rounded border border-primary focus:outline-none
+                    px-4 focus:border-2 text-dark">
+                    <textarea name="description" class="w-56  h-32 bg-indigo-50 rounded border border-primary focus:outline-none
+                    px-4 focus:border-2 text-dark"  placeholder="Task description" maxlength="255"></textarea>
+                    <input type="date"  name="deadline"
+                    class="w-56  h-12 bg-indigo-50 rounded border border-primary focus:outline-none
+                    px-4 focus:border-2 text-dark">
+                
+                </div> 
+            </div>

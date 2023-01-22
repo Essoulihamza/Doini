@@ -1,3 +1,9 @@
-.task::-webkit-scrollbar {
+.task-container::-webkit-scrollbar {
     display: none;
+}
+*{
+    overflow-wrap: break-word;
+}
+textarea {
+    resize: none;
 }

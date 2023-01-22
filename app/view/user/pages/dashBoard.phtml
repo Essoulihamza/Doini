@@ -18,34 +18,14 @@
             foreach ($this->viewData['projects'] as $project) {
                 ?>
         <!-- project start -->
-        <div class="w-72 h-28 bg-primary rounded px-2 py-2">
+        <div class="w-72 h-28 bg-primary rounded px-2 py-2 flex justify-around items-center">
             <div class="flex justify-between">
                 <p class="text-light text-xl font-semibold cursor-default"><?php echo $project['name']; ?></p>
-                <div class="space-x-2">
+                <div class="space-x-2 ml-4">
                     <a href="http://doini.com/page/editProject/<?php echo $project['ID']; ?>"><i class="uil uil-setting text-2xl text-light"></i></a>
                     <a href="http://doini.com/page/taskBoard/<?php echo $project['ID']; ?>"><i class="uil uil-arrow-circle-right text-dark text-2xl"></i></a>
                 </div>
 
-            </div>
-            <div class="flex justify-around cursor-default">
-            <div>
-                <p>Todo</p>
-                <div class="w-9 h-9 bg-light rounded flex justify-center items-center">
-                    <p class="text-dark text-center font-bold text-xl ">00</p>
-                </div>
-            </div>
-            <div>
-                <p>doing</p>
-                <div class="w-9 h-9 bg-light rounded flex justify-center items-center">
-                    <p class="text-dark text-center font-bold text-xl">00</p>
-                </div>
-            </div>
-            <div>
-                <p>Done</p>
-                <div class="w-9 h-9 bg-light rounded flex justify-center items-center">
-                    <p class="text-dark text-center font-bold text-xl">00</p>
-                </div>
-            </div>
             </div>
         </div>
         <!-- project end -->

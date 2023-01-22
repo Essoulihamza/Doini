@@ -1,7 +1,6 @@
 document.addEventListener('DOMContentLoaded', ready);
 function ready() {
     addProject();
-    tasksDragAndDrop();
 }
 function addProject() {
     let formButton = document.getElementById('add-project-button');
@@ -16,31 +15,6 @@ function addProject() {
         });
     }
 }
-
-function tasksDragAndDrop() {
-    let tasks = document.querySelectorAll('.task');
-    let taskContainers = document.querySelectorAll('.task-container');
-    let todoContainer = document.getElementById('todo-tasks');
-    let doingContainer = document.getElementById('doing-task');
-    let doneContainer = document.getElementById('done-tasks');
-
-    tasks.forEach(task => {
-        task.addEventListener('dragstart', () => {
-            task.classList.add('draggable-task');
-        });
-        task.addEventListener('dragend', () => {
-            task.classList.remove('draggable-task');
-        });
-    });
-    taskContainers.forEach(container => {
-        container.addEventListener('dragover', (event) => {
-            event.preventDefault();
-            let draggableTask = document.querySelector('.draggable-task');
-            container.appendChild(draggableTask);
-        });
-    });
-}
-
 
 function fetchProject() {
     let projectRequest = new XMLHttpRequest();
@@ -87,7 +61,6 @@ function fetchProject() {
             </div>
         </div>
             `;
-            console.log(projectElement);
         }
     }
 }

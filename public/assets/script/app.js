@@ -2,7 +2,6 @@ document.addEventListener('DOMContentLoaded', ready);
 function ready() {
     loginForm();
     signUpForm();
-    addProject();
 }
 function loginForm() {
     let formButton = document.getElementById('login-button');

@@ -34,4 +34,7 @@ class Project extends DataBase {
         $result->bindParam(1, $projectId);
         $result->execute();
     }
+    public function info($id) {
+        $sql = "SELECT ";
+    }
 }

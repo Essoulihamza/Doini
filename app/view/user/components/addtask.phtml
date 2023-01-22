@@ -1,0 +1,22 @@
+<form action="http://doini.com/Task/add/<?php echo $this->viewData['project']['ID']; ?>"
+    method="post"  enctype="multipart/form-data"
+class="absolute top-1/2 left-1/2 translate-y-[-50%] translate-x-[-50%] w-1/3  bg-primary rounded-md drop-shadow-2xl hidden flex-col space-y-8 px-6 py-8 items-center min-w-[280px]" id="add-task-form" >
+<svg  class="close-form  absolute top-0 right-1 cursor-pointer" width="36" height="36" fill="#eef2ff" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="m12 10.583 4.95-4.95 1.414 1.414-4.95 4.95 4.95 4.95-1.414 1.414L12 13.41l-4.95 4.95-1.414-1.414 4.95-4.95-4.95-4.95L7.05 5.633l4.95 4.95Z"></path>
+            </svg>
+            <h2 class="text-xl font-semibold text-dark text-center">Add Task</h2>
+            <div class="flex flex-col justify-center items-center justify-evenly">
+                <input type="text"  name="task-name" placeholder="Enter task title"
+                class="w-56  h-12 bg-indigo-50 rounded border border-primary focus:outline-none
+                px-4 focus:border-2 text-dark">
+                <textarea name="description" class="w-56  h-32 bg-indigo-50 rounded border border-primary focus:outline-none
+                px-4 focus:border-2 text-dark"  placeholder="Task description" maxlength="255"></textarea>
+                <input type="date"  name="deadline"
+                class="w-56  h-12 bg-indigo-50 rounded border border-primary focus:outline-none
+                px-4 focus:border-2 text-dark">
+                
+            </div>
+            <input type="submit"  name="add-task" value="add"
+                class="w-56  h-14 bg-dark rounded  focus:outline-none
+                px-4 focus:border-2 text-indigo-50 font-bold md:w-18 cursor-pointer"> 
+</form>
