@@ -4,6 +4,7 @@ function  ready() {
     addTask();
     addMultiTask();
     search();
+    deadlineLimit();
 }
 function addTask() {
     let formButton = document.getElementById('add-task-button');
@@ -42,17 +43,16 @@ function renderHTML(data) {
         let taskHtml = `<div draggable="true" ondragstart="startDragTask(event);" ondragend="endDropTask(event)" class="task w-full h-fit  bg-light rounded p-1 cursor-move drop-shadow-md"  id="${task.ID}">
         <div class="flex justify-between">
             <div class="flex items-center space-x-2">
-                <p class="task-name text-xl ml-2 border-b border-primary">${task.name}</p>
+                <p  onclick="editTask(event)"  class="task-name text-xl ml-2 border-b border-primary">${task.name}</p>
                 <div class="flex justify-center items-center w-20 bg-indigo-100 rounded-lg h-6" >
-                    <p class="task-deadline text-sm text-dark">${task.deadline}</p>
+                    <p  onclick="editTask(event)"  class="task-deadline text-sm text-dark">${task.deadline}</p>
                 </div>
             </div>
             <div class="space-x-1">
                 <a href="http://doini.com/task/delete/${task.ID}/${task.project}"><i class="uil uil-trash-alt text-indigo-300 text-lg"></i></a>
-                <a href="http://doini.com/task/edit/${task.ID}/${task.project}"><i class="uil uil-edit text-indigo-300 text-lg"></i></a> 
             </div>
         </div>
-        <p style="overflow-wrap: break-word;" class="task-description text-sm ml-4 mt-2 text-clip">${task.description}</p>
+        <p style="overflow-wrap: break-word;" onclick="editTask(event)"  class="task-description text-sm ml-4 mt-2 text-clip">${task.description} </p>
     </div>`;
         if(task.state == 'done') {
             done.insertAdjacentHTML('beforeend', taskHtml);
@@ -80,6 +80,28 @@ function updateData(data){
     }
 }
 
+function editTask(event){
+    let element = event.currentTarget;
+    element.setAttribute('contenteditable', 'true');
+    let task = element.parentElement;
+    while(!task.hasAttribute('draggable')) task = task.parentElement;
+    let state= task.parentElement.id;
+    if(state === 'doing-tasks') state = 'doing';
+    else if(state === 'done-tasks') state = 'done';
+    else state = 'to do';
+    element.addEventListener('focusout', () => {
+        let data = {
+            'id': task.id,
+            'name': task.querySelector('.task-name').innerHTML,
+            'description': task.querySelector('.task-description').innerHTML,
+            'deadline': task.querySelector('.task-deadline').innerHTML,
+            'state': state,
+        };
+        updateData(data);
+    });
+}
+
+
 function search() {
     let search = document.getElementById('search');
     let projectId = document.querySelector('h1').id;
@@ -98,6 +120,21 @@ function search() {
         }
     });
     
+}
+
+function deadlineLimit(){
+    let today = new Date();
+    let dd = today.getDate();
+    let mm = today.getMonth() + 1;
+    let yyyy = today.getFullYear();
+    if (dd < 10) dd = '0' + dd;
+    if (mm < 10) mm = '0' + mm;
+    today = yyyy + '-' + mm + '-' + dd;
+
+    let deadline = document.getElementsByClassName("deadline-input");
+    for(let i = 0; i < deadline.length; i++) {
+        deadline[i].setAttribute('min', today);
+    }
 }
 
 
@@ -156,9 +193,6 @@ function endDropTask(event) {
 
 
 
-
-
-
 // add multi tasks
 function addMultiTask() {
     let formButton = document.getElementById('add-multi-task-button');
@@ -177,26 +211,21 @@ function addMultiTask() {
             if(counter.value < 1 || isNaN(counter.value)) {
                 counter.value = 1;
             }else if(counter.value > 3) counter.value = 3;
-            if(counter.value)
-            for(let i = 0; i < counter.value; i++) {
-                let taskForm = `<div class="flex flex-col justify-center items-center justify-evenly">
-            <p class="border-b border-light text-light">${i+1}</p>
+    });
+    let taskForm = `<div class="flex flex-col justify-center items-center justify-evenly">
+            <p class="border-b border-light text-light">0</p>
             <input type="text"  name="task-name" placeholder="Enter task title"
             class="w-56  h-12 bg-indigo-50 rounded border border-primary focus:outline-none
             px-4 focus:border-2 text-dark">
             <textarea name="description" class="w-56  h-32 bg-indigo-50 rounded border border-primary focus:outline-none
             px-4 focus:border-2 text-dark"  placeholder="Task description" maxlength="255"></textarea>
             <input type="date"  name="deadline"
-            class="w-56  h-12 bg-indigo-50 rounded border border-primary focus:outline-none
+            class=".deadline-input w-56  h-12 bg-indigo-50 rounded border border-primary focus:outline-none
             px-4 focus:border-2 text-dark">
         
         </div>`;
-                let div = document.createElement('div');
-                div.innerHTML = taskForm;
-                container.append(div);
-                
-            }
-        });
+    
+
         
     }
 

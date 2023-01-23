@@ -34,9 +34,9 @@ class Task extends DataBase {
         $result->execute();
     }
     public function search($input, $projectId) {
-        $sql = "SELECT * FROM task WHERE project = :projectId AND name LIKE  '%$input%' OR description LIKE '%$input%' ORDER BY deadline ASC ;";
+        $sql = "SELECT * FROM task WHERE project = :projectId AND( name LIKE  '%$input%' OR description LIKE '%$input%') ORDER BY deadline ASC ;";
         $result = $this->connect()->prepare($sql);
-        $result->bindParam('projectId', $projectId);
+        $result->bindParam(':projectId', $projectId);
         $result->execute();
         return json_encode( $result->fetchAll() );
     }

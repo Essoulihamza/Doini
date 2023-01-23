@@ -89,7 +89,7 @@ class PageController extends controller
     }
     public function taskBoard($projectId) {
         if(isset($_SESSION['user-id'])) {
-            $this->view('user/pages/taskBoard', 'TaskBoard', ['project' => $this->model('project')->getProject($projectId)])->render();
+            $this->view('user/pages/taskBoard', 'TaskBoard', ['project' => $this->model('project')->getProject($projectId), 'user-id' => $_SESSION['user-id']])->render();
         }else  header('location: http://doini.com/page/index');
 
     }
