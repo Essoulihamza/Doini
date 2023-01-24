@@ -5,8 +5,18 @@ class TaskController extends controller {
             $Taskname = $_POST['task-name'];
             $description = Validate::Validate($_POST['description']);
             $deadline = Validate::Validate($_POST['deadline']);
-            $projectId = $project;
-            $this->model('task')->insertTask($Taskname, $description, $deadline, $projectId);
+            $this->model('task')->insertTask($Taskname, $description, $deadline, $project);
+            header('location: http://doini.com/page/taskBoard/'. $project);
+        }
+    }
+    public function addMulti($project) {
+        if(isset($_POST['addTasks'])) {
+            for ($i = 0; $i < count($_POST['task-name']); $i++) {
+                $Taskname = $_POST['task-name'][$i];
+                $description = Validate::Validate($_POST['description'][$i]);
+                $deadline = Validate::Validate($_POST['deadline'][$i]);
+                $this->model('task')->insertTask($Taskname, $description, $deadline, $project);
+            }
             header('location: http://doini.com/page/taskBoard/'. $project);
         }
     }

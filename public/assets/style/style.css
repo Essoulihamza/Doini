@@ -1,6 +1,9 @@
 .task-container::-webkit-scrollbar {
     display: none;
 }
+#container::-webkit-scrollbar {
+    display: none;
+}
 *{
     overflow-wrap: break-word;
 }

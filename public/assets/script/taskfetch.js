@@ -40,7 +40,7 @@ function renderHTML(data) {
     doing.innerHTML = "";
     done.innerHTML = "";
     data.forEach(task => {
-        let taskHtml = `<div draggable="true" ondragstart="startDragTask(event);" ondragend="endDropTask(event)" class="task w-full h-fit  bg-light rounded p-1 cursor-move drop-shadow-md"  id="${task.ID}">
+let taskHtml = `<div draggable="true" ondragstart="startDragTask(event);" ondragend="endDropTask(event)" class="task w-full h-fit  bg-light rounded p-1 cursor-move drop-shadow-md"  id=${task.ID}">
         <div class="flex justify-between">
             <div class="flex items-center space-x-2">
                 <p  onclick="editTask(event)"  class="task-name text-xl ml-2 border-b border-primary">${task.name}</p>
@@ -134,6 +134,7 @@ function deadlineLimit(){
     let deadline = document.getElementsByClassName("deadline-input");
     for(let i = 0; i < deadline.length; i++) {
         deadline[i].setAttribute('min', today);
+        deadline[i].setAttribute('value', today);
     }
 }
 
@@ -198,37 +199,38 @@ function addMultiTask() {
     let formButton = document.getElementById('add-multi-task-button');
     let form = document.getElementById('add-multi-task-form');
     if (form != null) {
-        let counter = form.querySelector('#tasks-counter');
         let formCloser = form.querySelector('.close-form');
         let container = form.querySelector('#container');
+        let addMulti = document.getElementById('add-multi');
         formCloser.addEventListener('click', () => {
             form.classList.replace('flex', 'hidden');
         });
         formButton.addEventListener('click', () => {
             form.classList.replace('hidden', 'flex');
         });
-        counter.addEventListener('change', ()=>{
-            if(counter.value < 1 || isNaN(counter.value)) {
-                counter.value = 1;
-            }else if(counter.value > 3) counter.value = 3;
-    });
-    let taskForm = `<div class="flex flex-col justify-center items-center justify-evenly">
-            <p class="border-b border-light text-light">0</p>
-            <input type="text"  name="task-name" placeholder="Enter task title"
-            class="w-56  h-12 bg-indigo-50 rounded border border-primary focus:outline-none
-            px-4 focus:border-2 text-dark">
-            <textarea name="description" class="w-56  h-32 bg-indigo-50 rounded border border-primary focus:outline-none
-            px-4 focus:border-2 text-dark"  placeholder="Task description" maxlength="255"></textarea>
-            <input type="date"  name="deadline"
-            class=".deadline-input w-56  h-12 bg-indigo-50 rounded border border-primary focus:outline-none
-            px-4 focus:border-2 text-dark">
-        
-        </div>`;
-    
 
-        
+        addMulti.addEventListener('click', ()=>{
+            let count = container.getElementsByClassName('form-multi').length;
+            let taskForm = `<div  class="form-multi flex flex-col justify-center items-center justify-evenly">  
+                                <img class="delte-form cursor-pointer" onclick="removeMultiaddForm(event)" src="/assets/images/delete.svg" alt="delete">
+                                <p class="border-b border-light text-light">${count + 1}</p>
+                                <input type="text"  name="task-name[]" placeholder="Enter task title"
+                                class="w-56  h-12 bg-indigo-50 rounded border border-primary focus:outline-none
+                                px-4 focus:border-2 text-dark">
+                                <textarea name="description[]" class="w-56  h-32 bg-indigo-50 rounded border border-primary focus:outline-none
+                                px-4 focus:border-2 text-dark"  placeholder="Task description" maxlength="255"></textarea>
+                                <input type="date"  name="deadline[]" 
+                                class="deadline-input w-56  h-12 bg-indigo-50 rounded border border-primary focus:outline-none
+                                px-4 focus:border-2 text-dark">
+                            </div>`;
+            container.insertAdjacentHTML('beforeend', taskForm);
+            deadlineLimit();
+        });
     }
 
+}
+function removeMultiaddForm(event) {
+    event.target.parentElement.remove();
 }
 
 
